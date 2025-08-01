@@ -62,5 +62,4 @@ On exit, if memory leaks are detected:
 
 ---
 
-## 🧪 Example Log Output
 
