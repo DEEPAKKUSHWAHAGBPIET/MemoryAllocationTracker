@@ -1,0 +1,31 @@
+
+==== Live Memory Tracker [2025-08-01 18:09:14] ====
+Address: 00DA2DD0 | Size: 90 bytes
+Total blocks: 1 | Total memory: 90 bytes
+==================================
+
+==== Live Memory Tracker [2025-08-01 18:13:26] ====
+Address: 00E92DD0 | Size: 196 bytes
+Total blocks: 1 | Total memory: 196 bytes
+==================================
+
+==== Live Memory Tracker [2025-08-01 18:13:45] ====
+Address: 00E92DD0 | Size: 196 bytes
+Address: 00E914F0 | Size: 80 bytes
+Total blocks: 2 | Total memory: 276 bytes
+==================================
+
+==== Live Memory Tracker [2025-08-01 18:16:50] ====
+Address: 00E92DD0 | Size: 196 bytes
+Address: 00E914F0 | Size: 90 bytes
+Address: 00E91570 | Size: 70 bytes
+Total blocks: 3 | Total memory: 356 bytes
+==================================
+
+==== Live Memory Tracker [2025-08-01 18:16:58] ====
+Address: 00E92DD0 | Size: 196 bytes
+Address: 00E914F0 | Size: 90 bytes
+Address: 00E91570 | Size: 70 bytes
+Address: 00E915D8 | Size: 480 bytes
+Total blocks: 4 | Total memory: 836 bytes
+==================================

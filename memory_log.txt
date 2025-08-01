@@ -1,0 +1,5 @@
+==== Memory Leak Report ====
+LEAK: Address: 00E92DD0 | Size: 196 bytes
+LEAK: Address: 00E914F0 | Size: 90 bytes
+LEAK: Address: 00E915D8 | Size: 480 bytes
+Total leaks: 3 | Total bytes leaked: 766
