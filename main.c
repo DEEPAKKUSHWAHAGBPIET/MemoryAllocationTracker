@@ -25,8 +25,9 @@ int main() {
 
     int choice;
     int index;
-    size_t size, count;
+    size_t size, count, newcount, newsize;
     void* ptr;
+    char ch;
 
     while (1) {
         print_menu();
@@ -46,8 +47,9 @@ int main() {
                 ptr = track_malloc(size);
                 user_ptrs[index] = ptr;
                 printf("Memory allocated at ptr[%d] = %p\n", index, ptr);
-                print_memory_log_to_console_and_logfile();
+                print_memory_log_to_console_and_logfile("Malloc");
                 break;
+               
 
             case 2:
                 printf("Enter count and size: ");
@@ -62,21 +64,34 @@ int main() {
                 ptr = track_calloc(count, size);
                 user_ptrs[index] = ptr;
                 printf("Memory allocated at ptr[%d] = %p\n", index, ptr);
-                print_memory_log_to_console_and_logfile();
+                print_memory_log_to_console_and_logfile("Calloc");
                 break;
 
-            case 3:
+            case 3:{
                 printf("Enter index to realloc: ");
                 scanf("%d", &index);
+                char choice;
+                printf("is it malloc or calloc allocated? m/c: ");
+                scanf(" %c", &choice);
                 if (index >= MAX_PTRS || user_ptrs[index] == NULL) {
                     printf("Invalid index.\n");
                     break;
                 }
-                printf("Enter new size: ");
-                scanf("%zu", &size);
+                if(choice=='m' || choice=='M'){
+                     printf("Enter new size: ");
+                     scanf("%zu", &size);
+                }
+                else{
+                    printf("Enter new count and size: ");
+                    scanf("%zu %zu", &newcount, &newsize);
+                    size = newcount*newsize;
+                }
+                
                 user_ptrs[index] = track_realloc(user_ptrs[index], size);
                 printf("Reallocated ptr[%d] to %p\n", index, user_ptrs[index]);
+                print_memory_log_to_console_and_logfile("type");
                 break;
+          }
 
             case 4:
                 printf("Enter index to free: ");
@@ -87,7 +102,7 @@ int main() {
                 }
                 track_free(user_ptrs[index]);
                 user_ptrs[index] = NULL;
-                printf("Memory freed at index %d.\n", index);
+               //  printf("Memory freed at index %d.\n", index);
                 break;
 
             case 5:
@@ -97,6 +112,7 @@ int main() {
                free_all_tracked_memory();
                // Clear user_ptrs array
                for (int i = 0; i < MAX_PTRS; ++i) user_ptrs[i] = NULL;
+               printf("All allocated memory is now deallocated...");
                break;
 
             case 0: {

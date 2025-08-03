@@ -58,19 +58,71 @@ void* track_realloc(void* ptr, size_t new_size) {
     return new_ptr;
 }
 
+// void track_free(void* ptr) {
+//     if (!ptr) {
+//         printf("Warning: Attempt to free NULL pointer.\n");
+//         return;
+//     }
+
+//     if (!remove_record(ptr)) {
+//         printf("Warning: Attempt to free untracked or already freed pointer %p\n", ptr);
+//         return;
+//     }
+
+//     free(ptr);
+// }
+
+unsigned int hash(void* ptr) {
+    return ((unsigned long)(ptr)) % TABLE_SIZE;
+}
+size_t get_size_for_address(void* ptr) {
+    unsigned long index = hash_ptr(ptr);
+    HashNode** table = get_all_records();
+    HashNode* node = table[index];
+    while (node) {
+        if (node->address == ptr) {
+            return node->size;
+        }
+        node = node->next;
+    }
+    return 0;
+}
+
+
 void track_free(void* ptr) {
     if (!ptr) {
-        printf("Warning: Attempt to free NULL pointer.\n");
+        printf("\033[1;33mWarning: Attempt to free NULL pointer.\033[0m\n");
         return;
     }
 
+    // Get the size before removing
+    size_t size = get_size_for_address(ptr);  // You must implement or already have this
+
     if (!remove_record(ptr)) {
-        printf("Warning: Attempt to free untracked or already freed pointer %p\n", ptr);
+        printf("\033[1;33mWarning: Attempt to free untracked or already freed pointer %p\033[0m\n", ptr);
         return;
     }
 
     free(ptr);
+
+    // Log to console
+    printf("\033[1;32mFreed memory at address: %p | Size: %zu bytes\033[0m\n", ptr, size);
+
+    // Optional: log to file
+    FILE* logFile = fopen("live_log.txt", "a");
+    if (logFile) {
+        time_t now = time(NULL);
+        struct tm* t = localtime(&now);
+        char time_str[32];
+        strftime(time_str, sizeof(time_str), "%Y-%m-%d %H:%M:%S", t);
+        
+        fprintf(logFile, "==============Freed Memory Address [%s]=============\n", time_str);
+        strftime(time_str, sizeof(time_str), "%Y-%m-%d %H:%M:%S", t);
+        fprintf(logFile, "Freed memory at address %p | Size: %zu bytes\n", ptr, size);
+        fclose(logFile);
+    }
 }
+
 
 void free_all_tracked_memory() {
     HashNode** table = get_all_records();  // Get the hash table
@@ -98,7 +150,7 @@ void memoryLeakRemover(){
      free_all_tracked_memory();
 }
 
-void print_memory_log_to_console_and_logfile() {
+void print_memory_log_to_console_and_logfile(char *type) {
     FILE* logFile = fopen("live_log.txt", "a");  // Append mode to preserve history
     if (!logFile) {
         printf("Error: Unable to write to live_log.txt\n");
@@ -182,7 +234,14 @@ void write_memory_log(const char* filename) {
     FILE* file = fopen(filename, "w");
     if (!file) return;
 
-    fprintf(file, "==== Memory Leak Report ====\n");
+    // Get current time
+    time_t now = time(NULL);
+    struct tm* t = localtime(&now);
+    char time_str[32];
+    strftime(time_str, sizeof(time_str), "%Y-%m-%d %H:%M:%S", t);
+
+
+    fprintf(file, "==== Memory Leak Report ====\n", time_str);
 
     int leak_count = 0;
     size_t total_leaked = 0;
@@ -191,7 +250,7 @@ void write_memory_log(const char* filename) {
     for (int i = 0; i < 1000; ++i) {
         HashNode* node = table[i];
         while (node) {
-            fprintf(file, "LEAK: Address: %p | Size: %zu bytes\n", node->address, node->size);
+            fprintf(file, "LEAK: []Address: %p | Size: %zu bytes\n", node->address, node->size);
             total_leaked += node->size;
             leak_count++;
             node = node->next;
