@@ -28,3 +28,80 @@ Address: 00B12D90 | Size: 2 bytes
 Address: 00B12E58 | Size: 80 bytes
 Total blocks: 2 | Total memory: 82 bytes
 ==================================
+
+==== Live Memory Tracker [2025-08-04 15:05:48] ====
+Address: 00B02DD0 | Size: 10 bytes
+Total blocks: 1 | Total memory: 10 bytes
+==================================
+
+==== Live Memory Tracker [2025-08-04 15:06:03] ====
+Address: 00B02DD0 | Size: 10 bytes
+Address: 00B02E70 | Size: 40 bytes
+Total blocks: 2 | Total memory: 50 bytes
+==================================
+
+==== Live Memory Tracker [2025-08-04 15:07:26] ====
+Address: 00B02DD0 | Size: 10 bytes
+Address: 00B02E70 | Size: 40 bytes
+Address: 00B01480 | Size: 50 bytes
+Total blocks: 3 | Total memory: 100 bytes
+==================================
+
+==== Live Memory Tracker [2025-08-04 15:07:38] ====
+Address: 00B02DD0 | Size: 10 bytes
+Address: 00B01480 | Size: 50 bytes
+Address: 00B014D8 | Size: 160 bytes
+Total blocks: 3 | Total memory: 220 bytes
+==================================
+==============Freed Memory Address [2025-08-04 15:10:04]=============
+Freed memory at address 00B014D8 | Size: 160 bytes
+
+==== Live Memory Tracker [2025-08-04 15:19:00] ====
+Address: 00B02DD0 | Size: 20 bytes
+Total blocks: 1 | Total memory: 20 bytes
+==================================
+
+==== Live Memory Tracker [2025-08-04 15:22:25] ====
+Address: 00BE2DD0 | Size: 30 bytes
+Total blocks: 1 | Total memory: 30 bytes
+==================================
+
+==== Live Memory Tracker [2025-08-04 15:22:41] ====
+Address: 00BF2DD0 | Size: 20 bytes
+Total blocks: 1 | Total memory: 20 bytes
+==================================
+
+==== Live Memory Tracker [2025-08-04 15:22:44] ====
+Address: 00BF2DD0 | Size: 20 bytes
+Address: 00BF2E78 | Size: 30 bytes
+Total blocks: 2 | Total memory: 50 bytes
+==================================
+
+==== Live Memory Tracker [2025-08-04 15:28:24] ====
+Address: 00B12DD0 | Size: 20 bytes
+Total blocks: 1 | Total memory: 20 bytes
+==================================
+
+==== Live Memory Tracker [2025-08-04 15:28:26] ====
+Address: 00B12DD0 | Size: 20 bytes
+Address: 00B12E78 | Size: 30 bytes
+Total blocks: 2 | Total memory: 50 bytes
+==================================
+
+==== Live Memory Tracker [2025-08-04 15:28:34] ====
+Address: 00B12DD0 | Size: 20 bytes
+Address: 00B12E78 | Size: 30 bytes
+Address: 00B11480 | Size: 40 bytes
+Total blocks: 3 | Total memory: 90 bytes
+==================================
+==============Freed Memory Address [2025-08-04 15:28:54]=============
+Freed memory at address 00B12E78 | Size: 30 bytes
+
+==== Freeing All Tracked Memory [2025-08-04 15:29:13] ====
+Freed Address: 00B12DD0 | Size: 20 bytes
+Freed Address: 00B11480 | Size: 40 bytes
+==========================================
+
+==== Freeing All Tracked Memory [2025-08-04 15:29:36] ====
+No memory leaks found. Nothing to free.
+==========================================

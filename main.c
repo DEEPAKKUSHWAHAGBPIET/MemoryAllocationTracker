@@ -113,7 +113,7 @@ int main() {
                free_all_tracked_memory();
                // Clear user_ptrs array
                for (int i = 0; i < MAX_PTRS; ++i) user_ptrs[i] = NULL;
-               // printf("All allocated memory is now deallocated...");
+               printf("All allocated memory is now deallocated...");
                break;
 
             case 0: {

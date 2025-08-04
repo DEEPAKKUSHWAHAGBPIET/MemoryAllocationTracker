@@ -124,33 +124,72 @@ void track_free(void* ptr) {
 }
 
 
+// void free_all_tracked_memory() {
+//     HashNode** table = get_all_records();  // Get the hash table
+//     int temp=1;
+//     for (int i = 0; i < TABLE_SIZE; ++i) {
+//         HashNode* node = table[i];
+//         while (node) {
+//             temp = 0;
+//             HashNode* temp = node;
+//             node = node->next;
+
+//             // Free the actual memory block if not already freed
+//             if (temp->address != NULL) {
+//                 free(temp->address);
+//                 temp->address = NULL;
+//             }
+
+//             free(temp);  // Free the HashNode itself
+//         }
+//         table[i] = NULL;
+//     }
+// }
+
 void free_all_tracked_memory() {
     HashNode** table = get_all_records();  // Get the hash table
-    int temp=1;
+    int hasLeaks = 0;
+
+    FILE* logFile = fopen("live_log.txt", "a");
+    if (!logFile) {
+        printf("Error: Unable to write to live_log.txt\n");
+        return;
+    }
+
+    // Timestamp
+    time_t now = time(NULL);
+    struct tm* t = localtime(&now);
+    char time_str[32];
+    strftime(time_str, sizeof(time_str), "%Y-%m-%d %H:%M:%S", t);
+
+    fprintf(logFile, "\n==== Freeing All Tracked Memory [%s] ====\n", time_str);
+
     for (int i = 0; i < TABLE_SIZE; ++i) {
         HashNode* node = table[i];
         while (node) {
-            temp = 0;
+            hasLeaks = 1;
             HashNode* temp = node;
             node = node->next;
 
-            // Free the actual memory block if not already freed
             if (temp->address != NULL) {
+                fprintf(logFile, "Freed Address: %p | Size: %zu bytes\n", temp->address, temp->size);
                 free(temp->address);
                 temp->address = NULL;
             }
 
-            free(temp);  // Free the HashNode itself
+            free(temp);
         }
         table[i] = NULL;
     }
-//     if(temp==1){
-//           printf("No allocated memory found...");
-//      }
-//      else{
-//      printf("All allocated memory is now deallocated...");
-//      }
+
+    if (!hasLeaks) {
+        fprintf(logFile, "No memory leaks found. Nothing to free.\n");
+    }
+
+    fprintf(logFile, "==========================================\n");
+    fclose(logFile);
 }
+
 
 
 void memoryLeakRemover(){
