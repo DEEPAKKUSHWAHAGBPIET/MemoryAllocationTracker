@@ -1,5 +1,2 @@
 ==== Memory Leak Report ====
-LEAK: []Address: 00C52DD0 | Size: 20 bytes
-LEAK: []Address: 00C51480 | Size: 20 bytes
-LEAK: []Address: 00C514B8 | Size: 50 bytes
-Total leaks: 3 | Total bytes leaked: 90
+No memory leaks detected.

@@ -1,36 +1,30 @@
 
-==== Live Memory Tracker [2025-08-03 21:24:40] ====
-Address: 00C52DD0 | Size: 20 bytes
+==== Live Memory Tracker [2025-08-04 13:06:17] ====
+Address: 00B52E00 | Size: 20 bytes
 Total blocks: 1 | Total memory: 20 bytes
 ==================================
 
-==== Live Memory Tracker [2025-08-03 21:24:49] ====
-Address: 00C52DD0 | Size: 20 bytes
-Address: 00C52E78 | Size: 30 bytes
-Total blocks: 2 | Total memory: 50 bytes
+==== Live Memory Tracker [2025-08-04 13:09:47] ====
+Address: 00B52E00 | Size: 20 bytes
+Address: 00B51468 | Size: 90 bytes
+Total blocks: 2 | Total memory: 110 bytes
+==================================
+==============Freed Memory Address [2025-08-04 13:10:09]=============
+Freed memory at address 00B51468 | Size: 90 bytes
+
+==== Live Memory Tracker [2025-08-04 13:12:01] ====
+Address: 00B12D90 | Size: 2 bytes
+Total blocks: 1 | Total memory: 2 bytes
 ==================================
 
-==== Live Memory Tracker [2025-08-03 21:24:55] ====
-Address: 00C52DD0 | Size: 20 bytes
-Address: 00C52E78 | Size: 30 bytes
-Address: 00C51480 | Size: 20 bytes
-Total blocks: 3 | Total memory: 70 bytes
+==== Live Memory Tracker [2025-08-04 13:12:16] ====
+Address: 00B12D90 | Size: 2 bytes
+Address: 00B12E58 | Size: 20 bytes
+Total blocks: 2 | Total memory: 22 bytes
 ==================================
 
-==== Live Memory Tracker [2025-08-03 21:25:39] ====
-Address: 00C52DD0 | Size: 20 bytes
-Address: 00C52E78 | Size: 30 bytes
-Address: 00C51480 | Size: 20 bytes
-Address: 00C514B8 | Size: 50 bytes
-Total blocks: 4 | Total memory: 120 bytes
+==== Live Memory Tracker [2025-08-04 13:13:05] ====
+Address: 00B12D90 | Size: 2 bytes
+Address: 00B12E58 | Size: 80 bytes
+Total blocks: 2 | Total memory: 82 bytes
 ==================================
-
-==== Live Memory Tracker [2025-08-03 21:26:13] ====
-Address: 00C52DD0 | Size: 20 bytes
-Address: 00C51480 | Size: 20 bytes
-Address: 00C514B8 | Size: 50 bytes
-Address: 00C51510 | Size: 60 bytes
-Total blocks: 4 | Total memory: 150 bytes
-==================================
-==============Freed Memory Address [2025-08-03 21:26:53]=============
-Freed memory at address 00C51510 | Size: 60 bytes

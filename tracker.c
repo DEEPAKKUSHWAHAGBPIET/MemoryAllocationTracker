@@ -115,7 +115,7 @@ void track_free(void* ptr) {
         struct tm* t = localtime(&now);
         char time_str[32];
         strftime(time_str, sizeof(time_str), "%Y-%m-%d %H:%M:%S", t);
-        
+
         fprintf(logFile, "==============Freed Memory Address [%s]=============\n", time_str);
         strftime(time_str, sizeof(time_str), "%Y-%m-%d %H:%M:%S", t);
         fprintf(logFile, "Freed memory at address %p | Size: %zu bytes\n", ptr, size);
@@ -126,10 +126,11 @@ void track_free(void* ptr) {
 
 void free_all_tracked_memory() {
     HashNode** table = get_all_records();  // Get the hash table
-
+    int temp=1;
     for (int i = 0; i < TABLE_SIZE; ++i) {
         HashNode* node = table[i];
         while (node) {
+            temp = 0;
             HashNode* temp = node;
             node = node->next;
 
@@ -143,6 +144,12 @@ void free_all_tracked_memory() {
         }
         table[i] = NULL;
     }
+//     if(temp==1){
+//           printf("No allocated memory found...");
+//      }
+//      else{
+//      printf("All allocated memory is now deallocated...");
+//      }
 }
 
 
@@ -183,8 +190,8 @@ void print_memory_log_to_console_and_logfile(char *type) {
     }
 
     if (count == 0) {
-        printf("No current memory allocations.\n");
-        fprintf(logFile, "No current memory allocations.\n");
+        //printf("Currently NO memory is allocated.\n");
+        fprintf(logFile, "Currently NO memory is allocated.\n");
     } else {
         printf("Total blocks: %d | Total memory: %zu bytes\n", count, total);
         fprintf(logFile, "Total blocks: %d | Total memory: %zu bytes\n", count, total);
@@ -222,7 +229,7 @@ void print_memory_log_to_console() {
     }
 
     if (count == 0) {
-        printf("No current memory allocations.\n");
+        printf("Currently NO memory is allocated.\n");
     } else {
         printf("Total blocks: %d | Total memory: %zu bytes\n", count, total);
     }
@@ -250,7 +257,7 @@ void write_memory_log(const char* filename) {
     for (int i = 0; i < 1000; ++i) {
         HashNode* node = table[i];
         while (node) {
-            fprintf(file, "LEAK: []Address: %p | Size: %zu bytes\n", node->address, node->size);
+            fprintf(file, "LEAK: Address: %p | Size: %zu bytes\n", node->address, node->size);
             total_leaked += node->size;
             leak_count++;
             node = node->next;

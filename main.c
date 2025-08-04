@@ -107,12 +107,13 @@ int main() {
 
             case 5:
                 print_memory_log_to_console();
+                //print_memory_log_to_console_and_logfile("ok");
                 break;
             case 6:
                free_all_tracked_memory();
                // Clear user_ptrs array
                for (int i = 0; i < MAX_PTRS; ++i) user_ptrs[i] = NULL;
-               printf("All allocated memory is now deallocated...");
+               // printf("All allocated memory is now deallocated...");
                break;
 
             case 0: {
